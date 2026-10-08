@@ -100,7 +100,7 @@ The product set was generated in ArcGIS Pro from the four converted LAS tiles. S
 | 8. Hillshade | Hillshade | Azimuth 315° · Altitude 45° | `hillshade_1m.tif` |
 | 9. Land–seabed DTM colour | Symbology → Stretch | Purple→blue→green→yellow; 0 m NZVD2016 contour as elevation reference | DTM 3D + 2D |
 | 10. Profile | Analysis → Exploratory 3D Analysis → Elevation Profile | Line from Sulphur Point across channel | Elevation vs distance |
-| 11. Vertical exaggeration | Command Search (Alt+Q) | Vertical Exaggeration = 5.00 | 3D relief readable |
+| 11. Vertical exaggeration | Command Search (Alt+Q) | Vertical Exaggeration = 1.00 | True-scale 3D relief |
 
 ## Products
 
