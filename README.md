@@ -1,6 +1,6 @@
 # Tauranga Coastal LiDAR — QC & 1 m ArcGIS Products
 
-Independent portfolio demonstration on LINZ 3D Coastal Mapping data (New Zealand Coastal LiDAR Point Cloud), prepared for the Toitū Te Whenua Sea Squad Geospatial Specialist Level 1 role.
+Independent portfolio demonstration using LINZ 3D Coastal Mapping data, focused on coastal LiDAR QC, ArcGIS Pro raster products, and vertical-datum interpretation.
 
 **Live report:** [View the interactive portfolio report](https://nicole140002-wang.github.io/tauranga-coastal-lidar/)
 
