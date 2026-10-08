@@ -144,9 +144,9 @@ Combining classes 2 and 40 demonstrates a ground–seabed elevation product with
 
 ## Vertical datums and tidal interpretation
 
-The source elevations are referenced to **NZVD2016**, a gravity-based national height reference defined independently of local sea level. Tauranga tide predictions state heights above local **Chart Datum**. A zero-height NZVD2016 contour is an elevation contour; it cannot be assumed to identify a shoreline or tidal boundary.
+The source elevations are referenced to **NZVD2016**, New Zealand's official geoid-based vertical datum, defined independently of local sea level. Tauranga tide predictions state heights above local **Chart Datum**. A zero-height NZVD2016 contour is therefore an elevation contour; it cannot be assumed to identify a shoreline or tidal boundary.
 
-No NZVD2016–Chart Datum offset, MHWS elevation, surveyed drying line or verified intertidal area is calculated in this report. LINZ defines Tauranga Chart Datum as **4.103 m below benchmark BC 84 (B309)**; a local connection requires verifying the applicable B309 NZVD2016 height, connection record, uncertainty and spatial use.
+No NZVD2016–Chart Datum offset, MHWS elevation, surveyed drying line or verified intertidal area is calculated in this report. LINZ defines Tauranga Chart Datum as **4.103 m below B.M. BC 84 (B309)**. Establishing a local connection would require verifying the applicable NZVD2016 height of B309, the benchmark connection record, associated uncertainty, and its applicability to the study area.
 
 ## Problem log
 
