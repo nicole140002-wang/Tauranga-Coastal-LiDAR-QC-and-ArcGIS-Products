@@ -1,0 +1,32 @@
+# Large point-cloud data — not for Git
+raw_data/
+converted_las/
+*.laz
+*.las
+*.copc.las
+
+# Raster products (large GeoTIFFs) and sidecars
+*.tif
+*.tiff
+*.tfw
+*.tif.aux.xml
+*.tif.ovr
+*.tif.xml
+processed/
+arcgis/*.tif
+arcgis/*.lasd
+arcgis/*.lasd.xml
+
+# Archives
+*.zip
+
+# Python / OS junk
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Preview artifacts
+.preview/
