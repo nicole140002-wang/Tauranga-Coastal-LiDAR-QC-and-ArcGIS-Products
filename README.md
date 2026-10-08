@@ -13,9 +13,9 @@ Independent portfolio demonstration using LINZ 3D Coastal Mapping data, focused 
 
 ## Project summary
 
-A hands-on exercise on real LINZ coastal LiDAR data: I downloaded 4 LAZ tiles (40.75 million returns) around Tauranga Harbour, ran first-line quality checks, and generated 1 m raster products in ArcGIS Pro — all while documenting what the data can and cannot support.
+A hands-on exercise on real LINZ coastal LiDAR data: I downloaded 4 coastal LiDAR tiles (40.75 million point records) around Tauranga Harbour, ran first-line quality checks, and generated 1 m raster products in ArcGIS Pro — all while documenting what the data can and cannot support.
 
-**Key numbers:** 4 tiles · 40.75 M points · 1 m resolution · LAS 1.4 PDRF8 · NZTM2000 / NZVD2016
+**Key numbers:** 4 tiles · 40.75 M point records · 1 m raster cell size · LAS 1.4 PDRF8 · NZTM2000 / NZVD2016
 
 **What I did:**
 - Audited classifications, withheld flags, synthetic water points, elevation ranges and intensity
@@ -31,7 +31,7 @@ A hands-on exercise on real LINZ coastal LiDAR data: I downloaded 4 LAZ tiles (4
 | Item | Detail |
 |---|---|
 | Source layer | LINZ Data Service · `d3Y5Qkvcp5Q5vXf` (New Zealand Coastal LiDAR Point Cloud) |
-| File structure | LAS 1.4, point data record format 8; original payloads LAZ-compressed with COPC; converted files uncompressed LAS |
+| File structure | Source files: COPC LAZ (LAS 1.4 / PDRF8); working copies converted to uncompressed LAS for analysis |
 | Horizontal CRS | NZGD2000 / New Zealand Transverse Mercator 2000 (NZTM2000) · EPSG:2193 |
 | Vertical CRS | New Zealand Vertical Datum 2016 (NZVD2016) · EPSG:7839 |
 | File sizes | ~390 MB compressed LAZ across 4 tiles; ~1.55 GB as converted LAS |
@@ -41,7 +41,7 @@ A hands-on exercise on real LINZ coastal LiDAR data: I downloaded 4 LAZ tiles (4
 
 ### Tile layout
 
-4 non-contiguous tiles, 480 m × 720 m each, separated by ~480 m gaps. Tile-frame total ≈ 1.38 km²; enclosing rectangle ≈ 4.15 km² — neither is an effective measured footprint.
+Four selected tiles that do not provide continuous harbour coverage; ~480 m gaps occur between parts of the sample. Each tile is 480 m × 720 m. Tile-frame total ≈ 1.38 km²; enclosing rectangle ≈ 4.15 km² — neither is an effective measured footprint.
 
 ## First-line checks
 
@@ -54,7 +54,7 @@ A hands-on exercise on real LINZ coastal LiDAR data: I downloaded 4 LAZ tiles (4
 | 1305 | 12,476,448 | 36.1 | 1,140,609 | 583,583 | 3,794,917 | 30.4% | 42.7% | −10.48 |
 | 1310 | 8,503,988 | 24.6 | 662,235 | 381,955 | 3,463,997 | 40.7% | 41.2% | −17.45 |
 
-Mean density divides all delivered records by each tile's bounding rectangle. The numerator includes synthetic, withheld, vendor-labelled noise and multiple returns. It does **not** measure compliance with a minimum survey-density requirement.
+Mean density divides all delivered records by each tile's bounding rectangle. The numerator includes synthetic, withheld, delivery-labelled noise and multiple returns. It does **not** measure compliance with a minimum survey-density requirement.
 
 ### Flag summary
 
@@ -140,8 +140,8 @@ No NZVD2016–Chart Datum offset, MHWS elevation, surveyed drying line or verifi
 
 | Problem | Diagnosis | Resolution |
 |---|---|---|
-| ".las" files failed laspy read | Extension was .las but payload was LAZ-compressed | Pass explicit Laszip backend; verified LAS 1.4 PDRF8 + WKT |
-| GPS times decoded to 1993 | Initial decode treated Adjusted Standard GPS Time as full GPS seconds; restoring the 10⁹-second offset and applying GPS–UTC conversion yields 28 Jan – 18 Feb 2025 UTC | Documented in §1; no "vendor epoch anomaly" claim |
+| ".las" files failed laspy read | LINZ export delivered COPC LAZ with a `.las` extension; required explicit Laszip backend, then files were re-saved as uncompressed LAS for analysis | Verified LAS 1.4 PDRF8 + embedded WKT before processing |
+| GPS times decoded to 1993 | Header indicates Adjusted Standard GPS Time; restoring the 10⁹-second offset and converting GPS time to UTC yields 28 Jan – 18 Feb 2025 UTC | Documented in §1; no "vendor epoch anomaly" claim |
 | Intensity p95 = 65,530 looked like saturation | All 13.0 M class-42 points store 65,530; assignment mechanism not established | Second summary calculated excluding class 42; existing raster retained and labelled |
 
 ## Provenance
