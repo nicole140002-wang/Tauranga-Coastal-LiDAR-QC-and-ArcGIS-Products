@@ -6,14 +6,14 @@ Independent portfolio demonstration using LINZ 3D Coastal Mapping data, focused 
 
 <table>
 <tr>
-<td align="center"><b>Ground–seabed DTM</b><br><img src="images/17_land_seabed_dtm_thumb.png" width="320"><br><sub>Brown = deep seabed, yellow = high ground · −17.45 m → +11.26 m NZVD2016</sub></td>
-<td align="center"><b>RGB true colour</b><br><img src="images/12_rgb_1m_truecolor_thumb.png" width="320"><br><sub>Three-band point attributes aggregated to 1 m cells</sub></td>
-<td align="center"><b>Mean intensity</b><br><img src="images/13_intensity_1m_thumb.png" width="320"><br><sub>Dark purple = low, bright yellow = high · 642 → 65,530 (synthetic water = 65,530)</sub></td>
+<td align="center"><b>Ground–seabed DTM</b><br><img src="images/17_land_seabed_dtm_thumb.png" width="320" height="180"><br><sub>Brown = deep seabed, yellow = high ground · −17.45 m → +11.26 m NZVD2016</sub></td>
+<td align="center"><b>RGB true colour</b><br><img src="images/12_rgb_1m_truecolor_thumb.png" width="320" height="180"><br><sub>Three-band point attributes aggregated to 1 m cells</sub></td>
+<td align="center"><b>Mean intensity</b><br><img src="images/13_intensity_1m_thumb.png" width="320" height="180"><br><sub>Dark purple = low, bright yellow = high · 642 → 65,530 (synthetic water = 65,530)</sub></td>
 </tr>
 <tr>
-<td align="center"><b>Point density</b><br><img src="images/14_density_1m_thumb.png" width="320"><br><sub>Purple = sparse, yellow = dense · 1 → 315 points/cell</sub></td>
-<td align="center"><b>Elevation profile</b><br><img src="images/16_profile_graph_thumb.png" width="320"><br><sub>Cross-section from Sulphur Point across the channel</sub></td>
-<td align="center"><b>3D classification</b><br><img src="images/01_port_wharf_classification_3d_thumb.png" width="320"><br><sub>Brown = ground, green = vegetation, red = building, blue = seabed</sub></td>
+<td align="center"><b>Point density</b><br><img src="images/14_density_1m_thumb.png" width="320" height="180"><br><sub>Purple = sparse, yellow = dense · 1 → 315 points/cell</sub></td>
+<td align="center"><b>Elevation profile</b><br><img src="images/16_profile_graph_thumb.png" width="320" height="180"><br><sub>Cross-section from Sulphur Point across the channel</sub></td>
+<td align="center"><b>3D classification</b><br><img src="images/01_port_wharf_classification_3d_thumb.png" width="320" height="180"><br><sub>Brown = ground, green = vegetation, red = building, blue = seabed</sub></td>
 </tr>
 </table>
 
