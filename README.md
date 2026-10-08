@@ -6,11 +6,18 @@ Independent portfolio demonstration on LINZ 3D Coastal Mapping data (New Zealand
 
 ## Showcase
 
-| Ground–seabed DTM | RGB true colour | Mean intensity |
-|:---:|:---:|:---:|
-| ![DTM](images/17_land_seabed_dtm.png) | ![RGB](images/12_rgb_1m_truecolor.png) | ![Intensity](images/13_intensity_1m.png) |
-| Point density | Elevation profile | 3D classification |
-| ![Density](images/14_density_1m.png) | ![Profile](images/16_profile_graph.png) | ![3D](images/01_port_wharf_classification_3d.png) |
+<table>
+<tr>
+<td align="center"><b>Ground–seabed DTM</b><br><img src="images/17_land_seabed_dtm.png" width="320"></td>
+<td align="center"><b>RGB true colour</b><br><img src="images/12_rgb_1m_truecolor.png" width="320"></td>
+<td align="center"><b>Mean intensity</b><br><img src="images/13_intensity_1m.png" width="320"></td>
+</tr>
+<tr>
+<td align="center"><b>Point density</b><br><img src="images/14_density_1m.png" width="320"></td>
+<td align="center"><b>Elevation profile</b><br><img src="images/16_profile_graph.png" width="320"></td>
+<td align="center"><b>3D classification</b><br><img src="images/01_port_wharf_classification_3d.png" width="320"></td>
+</tr>
+</table>
 
 ---
 
