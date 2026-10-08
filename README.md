@@ -21,7 +21,7 @@ Independent portfolio demonstration on LINZ 3D Coastal Mapping data (New Zealand
 
 ---
 
-## What this is
+## Project summary
 
 A hands-on exercise on real LINZ coastal LiDAR data: I downloaded 4 LAZ tiles (40.75 million returns) around Tauranga Harbour, ran first-line quality checks, and generated 1 m raster products in ArcGIS Pro — all while documenting what the data can and cannot support.
 
