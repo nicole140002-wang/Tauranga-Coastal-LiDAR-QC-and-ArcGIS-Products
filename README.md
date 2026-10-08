@@ -2,6 +2,8 @@
 
 Independent portfolio demonstration on LINZ 3D Coastal Mapping data (New Zealand Coastal LiDAR Point Cloud), prepared for the Toitū Te Whenua Sea Squad Geospatial Specialist Level 1 role.
 
+**Live report:** [View the interactive portfolio report](https://nicole140002-wang.github.io/tauranga-coastal-lidar/)
+
 ## Showcase
 
 <table>
@@ -31,6 +33,8 @@ A hands-on exercise on real LINZ coastal LiDAR data: I downloaded 4 LAZ tiles (4
 - Ran an elevation profile across the shipping channel
 
 **What I did *not* claim:** formal vendor acceptance, independent accuracy, Chart Datum transformation, or a verified intertidal boundary — those require reference data and are listed as follow-up work.
+
+> **Key QC finding:** 13.0 M synthetic water-surface points (class 42) all share intensity = 65,530 — demonstrating why point-population filtering matters before interpreting LiDAR-derived intensity products.
 
 ## Scope and source data
 
@@ -161,16 +165,17 @@ No NZVD2016–Chart Datum offset, MHWS elevation, surveyed drying line or verifi
 | Chunked LAS / raster audit (Python) | Included and run |
 | ArcGIS Pro product generation | Partially documented (tools, params, screenshots; saved filters needed) |
 | Point-cloud-to-raster re-run from scratch | Not demonstrated |
-| National-scale / public catalogue | Not demonstrated; would require COPC streaming, tiled/out-of-core gridding or parallel processing |
+| National-scale / public catalogue | Not demonstrated; scaling would require a more scalable processing strategy, potentially including COPC streaming, tiled/out-of-core gridding or parallel processing |
 | Formal acceptance / independent accuracy | Out of scope |
 
 ## Structure
 
 ```
-images/      Report HTML + ArcGIS screenshots (PNG)
-scripts/     Python QC scripts (laspy / numpy)
-arcgis/      ArcGIS screenshots
-index.html   Live report (GitHub Pages)
+images/              Curated images used by README and GitHub Pages
+arcgis/screenshots/  Supporting ArcGIS Pro workflow screenshots
+scripts/             Python QC scripts (laspy / numpy)
+index.html           Live GitHub Pages report
+README.md            Repository overview
 ```
 
 Point-cloud data (.laz/.las) and GeoTIFFs are excluded from Git.
