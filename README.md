@@ -17,6 +17,8 @@ Independent portfolio demonstration using LINZ 3D Coastal Mapping data, focused 
 </tr>
 </table>
 
+*Colour notes: DTM — purple (deepest) → blue → green → yellow (highest ground), NZVD2016 m. Intensity — purple (low) → orange/yellow (high; synthetic water points read 65,530). Density — purple (low) → yellow (high).*
+
 ---
 
 ## Project summary
@@ -171,7 +173,6 @@ No NZVD2016–Chart Datum offset, MHWS elevation, surveyed drying line or verifi
 ```
 images/              Curated images used by README and GitHub Pages
 arcgis/screenshots/  Supporting ArcGIS Pro workflow screenshots
-scripts/             Python QC scripts (laspy / numpy)
 index.html           Live GitHub Pages report
 README.md            Repository overview
 ```
