@@ -16,12 +16,16 @@ Independent portfolio demonstration on LINZ 3D Coastal Mapping data (New Zealand
 
 ## What this is
 
-- 4 selected tiles around Tauranga Harbour, **40,750,811 point records** (LAS 1.4 PDRF8, NZTM2000 / NZVD2016).
-- First-line QC: classification audit, withheld/synthetic counts, per-class elevation ranges, intensity statistics.
-- 1 m ArcGIS Pro products: DTM (ground + seabed), DSM, RGB, mean intensity, point density, hillshade, elevation profile.
-- Explicit limits: no formal acceptance, no verified Chart Datum connection, no intertidal boundary.
+A hands-on exercise on real LINZ coastal LiDAR data: I downloaded 4 LAZ tiles (40.75 million returns) around Tauranga Harbour, ran first-line quality checks, and generated 1 m raster products in ArcGIS Pro — all while documenting what the data can and cannot support.
 
-The work examines how topographic, bathymetric and processing-generated records behave in a selected sample, and documents what the resulting products can support — and what they cannot.
+**Key numbers:** 4 tiles · 40.75 M points · 1 m resolution · LAS 1.4 PDRF8 · NZTM2000 / NZVD2016
+
+**What I did:**
+- Audited classifications, withheld flags, synthetic water points, elevation ranges and intensity
+- Built ground–seabed DTM, DSM, RGB, intensity and density rasters from the LAS dataset
+- Ran an elevation profile across the shipping channel
+
+**What I did *not* claim:** formal vendor acceptance, independent accuracy, Chart Datum transformation, or a verified intertidal boundary — those require reference data and are listed as follow-up work.
 
 ## Scope and source data
 
