@@ -47,12 +47,12 @@ A hands-on exercise on real LINZ coastal LiDAR data: I downloaded 4 LAZ tiles (4
 
 ### Per-tile record summaries
 
-| Tile | Records | Mean records/m² | Ground (class 2) | Seabed (class 40) | Synthetic water (class 42) | Min class-40 Z (m) |
-|---|---:|---:|---:|---:|---:|---:|
-| 1206 | 10,304,404 | 29.8 | 1,411,241 | 1,004,015 | 1,615,638 | −5.40 |
-| 1208 | 9,465,971 | 27.4 | 65,976 | 555,503 | 4,126,195 | −15.33 |
-| 1305 | 12,476,448 | 36.1 | 1,140,609 | 583,583 | 3,794,917 | −10.48 |
-| 1310 | 8,503,988 | 24.6 | 662,235 | 381,955 | 3,463,997 | −17.45 |
+| Tile | Records | Mean records/m² | Ground (class 2) | Seabed (class 40) | Synthetic water (class 42) | Synthetic share | Min class-40 Z (m) |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| 1206 | 10,304,404 | 29.8 | 1,411,241 | 1,004,015 | 1,615,638 | 15.7% | −5.40 |
+| 1208 | 9,465,971 | 27.4 | 65,976 | 555,503 | 4,126,195 | 43.6% | −15.33 |
+| 1305 | 12,476,448 | 36.1 | 1,140,609 | 583,583 | 3,794,917 | 30.4% | −10.48 |
+| 1310 | 8,503,988 | 24.6 | 662,235 | 381,955 | 3,463,997 | 40.7% | −17.45 |
 
 Mean density divides all delivered records by each tile's bounding rectangle. The numerator includes synthetic, withheld, vendor-labelled noise and multiple returns. It does **not** measure compliance with a minimum survey-density requirement.
 
