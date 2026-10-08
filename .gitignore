@@ -28,5 +28,8 @@ Thumbs.db
 .idea/
 .vscode/
 
+# Local scripts — not published
+scripts/
+
 # Preview artifacts
 .preview/
