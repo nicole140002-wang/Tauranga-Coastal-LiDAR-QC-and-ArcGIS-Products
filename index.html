@@ -1,4 +1,285 @@
-<!doctype html>
-<html><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=images/linz_3dcm_demo_report.html">
-<title>Tauranga Coastal LiDAR QC Demo</title></head>
-<body>Redirecting to <a href="images/linz_3dcm_demo_report.html">the report</a>...</body></html>
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Tauranga coastal LiDAR QC demo — ArcGIS Pro 1 m products on LINZ 3DCM data, with explicit limits on density, accuracy and tidal interpretation. Prepared for the Toitū Te Whenua Sea Squad Geospatial Specialist role.">
+<title>Tauranga coastal LiDAR — QC & 1 m ArcGIS products</title>
+<style>
+:root{--ink:#172c3c;--muted:#516779;--navy:#103447;--green:#087f75;--line:#d9e4e8;--pale:#f1f7f6;--paper:#fff;--bg:#eef3f5;--accent:#2c6fbb}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}main{max-width:1180px;margin:auto;padding:32px 28px 64px}a{color:#086f79;text-underline-offset:3px}a:hover{color:#103447}
+header{background:linear-gradient(120deg,#103447,#15564f);color:white;border-radius:18px;padding:44px 42px;margin-bottom:22px}header p{color:#d8e8ea;max-width:850px}
+h1{font-size:clamp(30px,4vw,45px);line-height:1.16;letter-spacing:-.035em;margin:12px 0 18px}h2{font-size:26px;line-height:1.3;margin:0 0 20px;letter-spacing:-.02em}h3{font-size:19px;line-height:1.35;margin:26px 0 12px}p{margin:12px 0 18px}
+.eyebrow{font-size:12px;letter-spacing:.13em;text-transform:uppercase;font-weight:700}.subtitle{font-size:18px}.byline{font-size:13px;margin-bottom:0}
+nav{display:flex;gap:10px 20px;flex-wrap:wrap;padding:12px 0 25px;font-size:14px}nav a{font-weight:600;text-decoration:none}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:30px;margin-bottom:22px;scroll-margin-top:20px}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:26px 0 6px}.metric{border:1px solid #ffffff35;border-radius:10px;padding:16px;background:#ffffff0b}.metric strong{display:block;font-size:27px;line-height:1.2}.metric span{font-size:12px;color:#d8e8ea}
+.note{background:var(--pale);border-left:4px solid var(--green);padding:15px 19px;border-radius:0 8px 8px 0;margin:20px 0}.note p:last-child{margin-bottom:0}
+.note.warn{background:#fdf6e3;border-left-color:#b58900}
+.small,.source{font-size:13px;color:var(--muted)}.source{margin:10px 0 0}
+.table-scroll{overflow-x:auto;margin:18px 0}table{width:100%;border-collapse:collapse;font-size:14px}caption{text-align:left;font-weight:650;color:var(--ink);padding:0 0 10px}
+th{text-align:left;background:#edf4f5;font-size:12px;letter-spacing:.01em;color:#294d5a;padding:12px}td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:last-child td{border-bottom:0}.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.figure-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+figure{margin:18px 0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fafcfc}figure img{display:block;width:100%;height:auto}figcaption{font-size:13px;line-height:1.55;padding:15px 18px;color:var(--muted);background:#f7fafb}figcaption strong{display:block;color:var(--ink);font-size:14px;margin-bottom:5px}
+.wide img{max-height:620px;object-fit:contain}
+ul,ol{padding-left:23px}li{margin:9px 0}code{font:13px/1.5 ui-monospace,Consolas,monospace;background:#edf3f5;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}
+pre{white-space:pre-wrap;background:#edf3f5;padding:16px;border-radius:8px;font-size:13px;line-height:1.6;overflow-x:auto}pre code{padding:0}
+.flag-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.flag{padding:18px;background:#f5f9fa;border:1px solid var(--line);border-radius:9px}.flag strong{font-size:22px;display:block;color:var(--navy)}
+.svg-wrap{width:100%;overflow:hidden}.svg-wrap svg{display:block;width:100%;height:auto;background:#fafcfc}
+.sources li{font-size:14px}footer{font-size:13px;color:var(--muted);padding:4px 4px 24px}
+details{border-top:1px solid var(--line);padding-top:14px;margin-top:22px}summary{cursor:pointer;font-weight:600}
+.filelist{font-size:14px}
+.status{display:inline-block;border-radius:5px;padding:2px 7px;background:#e8f4ef;color:#13604f;font-size:12px;font-weight:650}.status.pending{background:#f5efe0;color:#7b5e21}
+.jd{font-size:13.5px}
+@media(max-width:720px){main{padding:15px 12px 40px}header{padding:27px 23px}.card{padding:23px 19px}.metrics{grid-template-columns:repeat(2,1fr)}.metric strong{font-size:23px}.figure-grid,.flag-grid{grid-template-columns:1fr}h2{font-size:23px}table{font-size:13px}th,td{padding:10px}}
+@media print{body{background:#fff;font-size:11px}main{max-width:none;padding:0}header{background:#fff;color:var(--ink);border:1px solid var(--line);padding:22px;border-radius:0}header p,.metric span{color:var(--muted)}h1{font-size:29px}.metric{border-color:var(--line)}.metric strong{font-size:22px}nav,.no-print{display:none}.card{border:0;border-top:1px solid var(--line);border-radius:0;padding:22px 0;margin:0}h2,h3{break-after:avoid}figure,tr,.note{break-inside:avoid}.figure-grid{display:block}figure{max-width:85%;margin:16px auto}figcaption{font-size:10px}.table-scroll{overflow:visible}table{font-size:10px}th,td{padding:7px}a{color:inherit}details{display:block}details[open]{break-inside:avoid}}
+</style>
+</head>
+<body>
+<main>
+
+<header>
+<div class="eyebrow">Independent portfolio demonstration · Toitū Te Whenua Sea Squad · LINZ 3D Coastal Mapping data</div>
+<h1>Tauranga coastal LiDAR — QC and 1 m ArcGIS products</h1>
+<p class="subtitle">Exploratory first-line checks and 1 m raster products from a real topo + bathymetric point-cloud delivery, rebuilt in ArcGIS Pro, with explicit limits on density, accuracy and tidal interpretation.</p>
+<p>The work examines how topographic, bathymetric and processing-generated records behave in a selected sample, and documents what the resulting products can support — and what they cannot.</p>
+<div class="metrics">
+<div class="metric"><strong>40.75 M</strong><span>delivered point records (4 tiles)</span></div>
+<div class="metric"><strong>4</strong><span>non-contiguous selected tiles (480 m gaps)</span></div>
+<div class="metric"><strong>1 m</strong><span>audited ArcGIS raster grid</span></div>
+<div class="metric"><strong>NZVD2016</strong><span>vertical datum · NZTM2000 / EPSG:2193 horizontal</span></div>
+</div>
+<p class="byline">Wenjuan Wang (Nicole) · UC Master of Geospatial Data Science · 7+ yrs GIS professional experience · Christchurch, NZ · 8 October 2026</p>
+</header>
+
+<nav aria-label="Report sections">
+<a href="#scope">Scope & source</a><a href="#qc">QC evidence</a><a href="#intensity">Intensity finding</a><a href="#arcgis">ArcGIS workflow</a><a href="#products">Products</a><a href="#datums">Datums & tides</a><a href="#provenance">Provenance</a><a href="#sources">Sources</a>
+</nav>
+
+<section class="card" id="scope">
+<h2>1 · Scope and source data</h2>
+<p>This independent demonstration uses <b>40,750,811 records</b> from four selected tiles of the <a href="https://data.linz.govt.nz/layer/d3Y5Qkvcp5Q5vXf/new-zealand-coastal-lidar-point-cloud/">New Zealand Coastal LiDAR Point Cloud</a>, collected through LINZ's 3D Coastal Mapping programme. The sample is around Tauranga Harbour, one of New Zealand's busiest ports.</p>
+<p>The work covers downloading and managing source files, inspecting structure and attributes, generating exploratory 1 m raster products in ArcGIS Pro, and explaining the evidence and its limits. Source classifications are inherited from the delivery; their accuracy has not been independently validated.</p>
+<div class="note"><b>Assessment scope</b><p>This is an exploratory portfolio study. Formal supplier acceptance, independent positional accuracy, density compliance, a verified Chart Datum transformation, and a verified intertidal boundary were <b>not established</b> here. They are listed as follow-up work in §7.</p></div>
+
+<div class="table-scroll"><table><caption>Source and file checks</caption><tbody>
+<tr><th scope="row">Source layer</th><td>LINZ Data Service · <code>d3Y5Qkvcp5Q5vXf</code> · export metadata dated 7 October 2026</td></tr>
+<tr><th scope="row">File structure</th><td>LAS 1.4, point data record format 8; original payloads LAZ-compressed with COPC; converted files uncompressed LAS</td></tr>
+<tr><th scope="row">Horizontal reference</th><td>NZGD2000 / New Zealand Transverse Mercator 2000 · EPSG:2193</td></tr>
+<tr><th scope="row">Vertical reference</th><td>NZVD2016 height (EPSG:7839), confirmed in source WKT. This checks the metadata label, not measurement accuracy.</td></tr>
+<tr><th scope="row">File sizes</th><td>~390 MB compressed LAZ across 4 tiles; ~1.55 GB as converted LAS. Raw point files are not included in this report package.</td></tr>
+<tr><th scope="row">Decoded point-record times</th><td>2025-01-28 to 2025-02-18 UTC (Adjusted Standard GPS Time). This range does not imply continuous acquisition throughout the interval.</td></tr>
+<tr><th scope="row">Scan angle</th><td>Raw int16 −3249 to +3249; PDRF8 scale 0.006° → <b>±19.494°</b>, consistent across all four tiles.</td></tr>
+<tr><th scope="row">Licence</th><td>CC BY 4.0 — "Sourced from the LINZ Data Service and licensed for reuse under the CC BY 4.0 licence."</td></tr>
+</tbody></table></div>
+
+<h3>The four tiles do not form continuous harbour coverage</h3>
+<figure>
+<div class="svg-wrap">
+<svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schematic of four non-contiguous tile bounding boxes">
+<rect x="0" y="0" width="600" height="320" fill="#fafcfc"/>
+<!-- bbox: x 1877920..1880800 (2880m), y 5828640..5830080 (1440m); scale 0.208 -->
+<!-- top row y=20..92 (5829360..5830080), bottom row y=112..184 (5828640..5829360) -->
+<!-- 1305: x 0..100 (1877920..1878400) -->
+<rect x="20" y="30" width="80" height="60" fill="#9ecae1" stroke="#08589c" stroke-width="1.5"/>
+<text x="60" y="65" text-anchor="middle" font-size="11" fill="#08306b">1305</text>
+<!-- 1206: x 100..200 -->
+<rect x="100" y="30" width="80" height="60" fill="#9ecae1" stroke="#08589c" stroke-width="1.5"/>
+<text x="140" y="65" text-anchor="middle" font-size="11" fill="#08306b">1206</text>
+<!-- gap 180..260 -->
+<rect x="180" y="30" width="80" height="60" fill="none" stroke="#b58900" stroke-dasharray="4,3" stroke-width="1.2"/>
+<text x="220" y="65" text-anchor="middle" font-size="10" fill="#b58900">gap</text>
+<!-- 1208: x 260..360 -->
+<rect x="260" y="30" width="80" height="60" fill="#9ecae1" stroke="#08589c" stroke-width="1.5"/>
+<text x="300" y="65" text-anchor="middle" font-size="11" fill="#08306b">1208</text>
+<!-- gap 340..420 -->
+<rect x="340" y="30" width="80" height="60" fill="none" stroke="#b58900" stroke-dasharray="4,3" stroke-width="1.2"/>
+<text x="380" y="65" text-anchor="middle" font-size="10" fill="#b58900">gap</text>
+<!-- 1310: x 420..520 -->
+<rect x="420" y="30" width="80" height="60" fill="#9ecae1" stroke="#08589c" stroke-width="1.5"/>
+<text x="460" y="65" text-anchor="middle" font-size="11" fill="#08306b">1310</text>
+<!-- bbox outline -->
+<rect x="20" y="120" width="480" height="60" fill="none" stroke="#555" stroke-width="1" stroke-dasharray="2,2"/>
+<text x="260" y="155" text-anchor="middle" font-size="11" fill="#333">bounding box ~4.15 km²</text>
+<text x="300" y="230" text-anchor="middle" font-size="12" fill="#172c3c" font-weight="600">4 tiles, 480 m × 720 m each, separated by ~480 m gaps</text>
+<text x="300" y="252" text-anchor="middle" font-size="11" fill="#516779">Tile-frame total ≈ 1.38 km²; enclosing rectangle ≈ 4.15 km² — neither is effective measured footprint</text>
+<text x="300" y="272" text-anchor="middle" font-size="11" fill="#516779">Intervening areas were not selected in this sample; they do not establish missing coverage in the national layer.</text>
+</svg>
+</div>
+<figcaption><strong>Source-coordinate bounding rectangles of the four selected tiles</strong>The rectangles total approximately <b>1.38 km²</b>; their enclosing rectangle is approximately <b>4.15 km²</b>. Neither value is an effective measured footprint. Edge-to-edge seam continuity was not assessed.</figcaption>
+</figure>
+</section>
+
+<section class="card" id="qc">
+<h2>2 · First-line checks: records, classes and flags</h2>
+<p>The audit reads the four converted LAS files, checks headers against the originals, and summarises classifications, flags, elevations, intensity and encoded times. The figures describe delivered records; they are <b>not</b> acceptance-test results.</p>
+
+<div class="table-scroll"><table><caption>Per-tile record summaries</caption>
+<thead><tr><th scope="col">Tile</th><th scope="col" class="num">Records</th><th scope="col" class="num">All-record mean<br>records/m²</th><th scope="col" class="num">Ground<br>class 2</th><th scope="col" class="num">Seabed<br>class 40</th><th scope="col" class="num">Synthetic water<br>class 42</th><th scope="col" class="num">Min class-40 Z<br>(m NZVD2016)</th></tr></thead>
+<tbody>
+<tr><td>1206</td><td class="num">10,304,404</td><td class="num">29.8</td><td class="num">1,411,241</td><td class="num">1,004,015</td><td class="num">1,615,638</td><td class="num">−5.40</td></tr>
+<tr><td>1208</td><td class="num">9,465,971</td><td class="num">27.4</td><td class="num">65,976</td><td class="num">555,503</td><td class="num">4,126,195</td><td class="num">−15.33</td></tr>
+<tr><td>1305</td><td class="num">12,476,448</td><td class="num">36.1</td><td class="num">1,140,609</td><td class="num">583,583</td><td class="num">3,794,917</td><td class="num">−10.48</td></tr>
+<tr><td>1310</td><td class="num">8,503,988</td><td class="num">24.6</td><td class="num">662,235</td><td class="num">381,955</td><td class="num">3,463,997</td><td class="num">−17.45</td></tr>
+</tbody></table></div>
+
+<p class="small">Mean density divides all delivered records by each tile's source-coordinate bounding rectangle. The numerator includes synthetic, withheld, vendor-labelled noise and multiple returns. It does <b>not</b> measure compliance with a minimum survey-density requirement.</p>
+
+<p class="small"><b>Water-surface classes in this sample:</b> The delivery metadata uses the ASPRS topobathymetric classification scheme: class 40 (seabed), class 41 (detected water-surface return) and class 42 (synthetic water-surface point generated during refraction processing). In this 4-tile subset, class 40 = 2,525,056 records, class 42 = 13,000,747 records, and class 41 has no records. The 13.0 M class-42 points are not a subset of class 41; they are separate, vendor-generated derived points.</p>
+<p>The 3DCM project export metadata specifies minimum densities of <b>2 pts/m² above the drying line and 1 pt/m² below</b>, together with positional-accuracy requirements for bathymetric returns. This is a project-specific requirement, distinct from LINZ's separate National Aerial LiDAR Base Specification. Assessing compliance requires a matching point-selection policy, appropriate land/bathymetry domains, spatial density and coverage tests, and suitable independent reference data. <b>Density and accuracy compliance were not assessed here.</b></p>
+
+<div class="flag-grid">
+<div class="flag"><strong>16.98 M · 41.7%</strong><b>Withheld records</b><p class="small">Flagged for omission from ordinary processing. Presence does not itself establish an overlap-trimming rule, edge-trimming rule, or COPC-specific behaviour; the supplier's flag policy would need to be checked. Excluded from the ArcGIS density raster.</p></div>
+<div class="flag"><strong>13.00 M · 31.9%</strong><b>Synthetic records (class 42)</b><p class="small">Derived water-surface points generated during refraction processing, not independent measured terrain returns. Uniform intensity 65,530 across all 13.0 M points — see §3.</p></div>
+</div>
+
+<details><summary>Classification counts and project definitions</summary>
+<p class="small">Classes present in this 4-tile subset (confirmed by ArcGIS LAS Dataset Statistics and the per-class elevation audit): 1 unclassified, 2 ground, 3 low vegetation, 4 medium vegetation, 5 high vegetation, 6 building, 7 low noise, 40 seabed, 42 synthetic water surface, and 45 (bathymetric noise as labelled in this delivery). Classes absent in this subset: 9 topographic water, 18 high noise, 41 detected water surface, 43 submerged object. Counts do not establish classification accuracy — they are inherited from the vendor delivery and were not independently validated. The names for classes 7 and 45 follow the labels used in this delivery; their semantics should be confirmed against the project metadata rather than assumed from generic ASPRS.</p>
+</details>
+
+<h3>Extreme elevations are not a depth validation</h3>
+<p>The all-record elevation range is approximately <b>−117.6 to +86.8 m NZVD2016</b>. The most negative record (tile 1305, −117.56 m) and the maximum record (+86.79 m) are both labelled <b>class 7, low noise</b>. Noise-labelled records must not be used to describe the deepest seabed or the highest valid land feature. Tile 1310's most negative record (−45.64 m) is class 45 (bathymetric noise).</p>
+<p>The minimum elevation among delivered <b>class-40 seabed records is −17.45 m NZVD2016</b>. This is a class-specific sample statistic. It does <b>not</b> establish the maximum harbour depth, independently validate the classification, or verify a channel depth stated below Chart Datum — that would require a verified datum connection, concurrent reference soundings, and location matching.</p>
+
+<figure class="wide"><img src="images/01_port_wharf_classification_3d.png" alt="ArcGIS scene showing class-coloured coastal points around structures and water.">
+<figcaption><strong>Visual classification review</strong>Ground, vegetation, structures and water-related classes displayed together in an ArcGIS 3D scene. The image illustrates class patterns; it does not independently establish classification accuracy.</figcaption></figure>
+</section>
+
+<section class="card" id="intensity">
+<h2>3 · QC finding: uniform intensity on synthetic water surfaces</h2>
+<p>All <b>13.0 M class-42 records have intensity = 65,530</b>. The export metadata defines class 42 as a synthetic water surface used in refraction processing. This establishes a uniform stored attribute associated with derived points; why that value was assigned has not been established.</p>
+
+<div class="table-scroll"><table><caption>Intensity statistics by explicit point population</caption>
+<thead><tr><th scope="col">Population</th><th scope="col" class="num">Records</th><th scope="col" class="num">Mean</th><th scope="col" class="num">Median</th><th scope="col" class="num">P95</th></tr></thead>
+<tbody>
+<tr><td>All records (as delivered)</td><td class="num">40,750,811</td><td class="num">34,545</td><td class="num">—</td><td class="num">65,530</td></tr>
+<tr><td>Excluding class 42 only</td><td class="num">27,750,064</td><td class="num">20,028</td><td class="num">16,009</td><td class="num">61,479</td></tr>
+</tbody></table></div>
+
+<p class="small">"Excluding class 42 only" still includes withheld and noise-labelled records, so p95 = 61,479 is not a "clean" real-return intensity. These are point-level summaries, not newly generated intensity rasters.</p>
+<p>Intensity is a system-specific return-magnitude attribute, not calibrated reflectance. Comparing these values does not identify a laser wavelength, explain a physical water-reflection mechanism, or prove sensor saturation. The unsigned 16-bit field limit is 65,535; the observed value of 65,530 alone is not a saturation test.</p>
+<p>The existing ArcGIS intensity raster still includes synthetic class 42 — roughly <b>43.8% of valid cells read 65,530</b>. The image is retained to illustrate how point selection influences a product. A screened-return raster would require a separate, documented regeneration (a follow-up, not claimed here).</p>
+<p class="source">Attribute definition: <a href="https://asprslas.org/stable/02.00_definition.html#point-data-record-format-6">ASPRS intensity and classification flags</a>. The assignment mechanism for the uniform 65,530 value on synthetic points needs vendor clarification.</p>
+</section>
+
+<section class="card" id="arcgis">
+<h2>4 · ArcGIS Pro workflow (step by step)</h2>
+<p>The product set was generated in ArcGIS Pro from the four source tiles. Supporting Python QC (laspy/numpy) audited classifications, flags, intensity statistics and the resulting raster properties.</p>
+<div class="table-scroll"><table><caption>ArcGIS tools, parameters and outputs</caption>
+<thead><tr><th>Step</th><th>ArcGIS tool / pane</th><th>Parameters used</th><th>Output</th></tr></thead>
+<tbody>
+<tr><td>1. Build LAS dataset</td><td>LAS Dataset → Add files</td><td>4 converted LAS tiles; NZTM2000 + NZVD2016</td><td><code>coastal.lasd</code></td></tr>
+<tr><td>2. Classification symbology</td><td>Symbology → Classify</td><td>Class 2 ground, 6 building, 40 seabed, 42 synthetic water</td><td>3D scene</td></tr>
+<tr><td>3. DTM (ground + seabed)</td><td>LAS Dataset To Raster</td><td>Elevation · Binning Average · 1 m · Void Fill None · ground+seabed filter</td><td><code>DTM_1m_nofill.tif</code></td></tr>
+<tr><td>4. DSM (highest return)</td><td>LAS Dataset To Raster</td><td>Elevation · Binning Maximum · 1 m · All Points filter</td><td><code>DSM_1m.tif</code></td></tr>
+<tr><td>5. RGB true colour</td><td>LAS Dataset To Raster</td><td>Value = RGB · Binning Average · 1 m</td><td><code>RGB_1m.tif</code></td></tr>
+<tr><td>6. Return intensity</td><td>LAS Dataset To Raster</td><td>Value = Intensity · Binning Average · 1 m · (display: histogram equalisation)</td><td><code>intensity_1m.tif</code></td></tr>
+<tr><td>7. Point density</td><td>LAS Point Statistics As Raster</td><td>Property = Point Count · 1 m · (display: histogram equalisation)</td><td><code>density_1m.tif</code></td></tr>
+<tr><td>8. Hillshade</td><td>Hillshade (Spatial Analyst)</td><td>Azimuth 315° · Altitude 45° · no shadow modelling</td><td><code>hillshade_1m.tif</code></td></tr>
+<tr><td>9. Land–seabed DTM colour</td><td>Symbology → Stretch</td><td>Purple→blue→green→yellow ramp; 0 m NZVD2016 contour as an elevation reference</td><td>Continuous DTM 3D + 2D</td></tr>
+<tr><td>10. Profile transect</td><td>Analysis → Exploratory 3D Analysis → Elevation Profile</td><td>Line from Sulphur Point across channel</td><td>Elevation vs distance (~25 m → ~0 m over 450 m)</td></tr>
+<tr><td>11. Vertical exaggeration</td><td>Explore → Command Search (Alt+Q)</td><td>Vertical Exaggeration = 5.00</td><td>3D terrain relief readable</td></tr>
+</tbody></table></div>
+<p class="small">ArcGIS XML records the tools and numeric parameters, but does not fully preserve the contributing layer's classification and flag filters. Effective populations are supported by the read-only file audit; a complete re-run also requires saved filter definitions. Histogram equalisation is a display setting, not a point-selection or gridding method.</p>
+<p class="source">Methods: <a href="https://doc.esri.com/en/arcgis-pro/latest/tool-reference/conversion/las-dataset-to-raster.html">LAS Dataset To Raster</a> · <a href="https://doc.esri.com/en/arcgis-pro/latest/tool-reference/data-management/las-point-statistics-as-raster.html">LAS Point Statistics As Raster</a>.</p>
+</section>
+
+<section class="card" id="products">
+<h2>5 · Audited ArcGIS products</h2>
+<p>Five existing ArcGIS rasters were inspected. All use <b>1 m cells, 2,880 × 1,440</b>, bounds E 1,877,920–1,880,800 m / N 5,828,640–5,830,080 m. GeoTIFFs encode EPSG:2193 horizontally; elevation values inherit NZVD2016 metres from the LAS.</p>
+
+<div class="table-scroll"><table><caption>Methods and effective product interpretation</caption>
+<thead><tr><th scope="col">Product</th><th scope="col">Recorded ArcGIS method</th><th scope="col">Audited interpretation</th></tr></thead>
+<tbody>
+<tr><td><b>Ground–seabed DTM prototype</b></td><td>LAS Dataset To Raster · Elevation · Binning Average · Void Fill None</td><td>Classes 2 and 40 supply the points. In this sample, neither class carries withheld or synthetic flags. Cells without selected terrain points remain NoData — gaps are shown as absence, not interpolated.</td></tr>
+<tr><td><b>DSM candidate</b></td><td>LAS Dataset To Raster · Elevation · Binning Maximum · Void Fill None</td><td>Highest eligible elevation per cell, <b>including water-related and synthetic class-42 surfaces</b>. It is not a land-only or exclusively measured-return DSM. A re-run filtering out class 42 is a follow-up.</td></tr>
+<tr><td><b>Point-count raster</b></td><td>LAS Point Statistics As Raster · Point Count · 1 m</td><td>Non-withheld counts; include synthetic class 42. For 1 m² cells, counts are points/m² for this population — not a spec-compliance density.</td></tr>
+<tr><td><b>Mean intensity raster</b></td><td>LAS Dataset To Raster · Intensity · Binning Average · Void Fill None</td><td>Includes synthetic class 42. This is the existing mixed-population product, not a raster corrected by the point-level statistics in §3.</td></tr>
+<tr><td><b>Gridded point RGB</b></td><td>LAS Dataset To Raster · RGB · Binning Average · Void Fill None</td><td>Three source RGB attributes aggregated to cells. Colour provenance not independently assessed; this is not a newly validated orthophoto.</td></tr>
+</tbody></table></div>
+
+<div class="figure-grid">
+<figure><img loading="lazy" src="images/12_rgb_1m_truecolor.png" alt="Three-band gridded point RGB showing the harbour, port and city front."><figcaption><strong>Gridded point colour</strong>Three-band RGB displayed in ArcGIS. Gaps between selected areas do not establish gaps in the complete LINZ survey.</figcaption></figure>
+<figure><img loading="lazy" src="images/13_intensity_1m.png" alt="Mean intensity raster with bright water-associated areas influenced by synthetic records."><figcaption><strong>Intensity with synthetic records included</strong>Uniform class-42 values influence the bright water-associated cells. No optical saturation interpretation is asserted.</figcaption></figure>
+<figure><img loading="lazy" src="images/14_density_1m.png" alt="Non-withheld point counts displayed with a purple-to-yellow colour ramp."><figcaption><strong>Point-count distribution</strong>Non-withheld counts per 1 m², including synthetic class 42, displayed with histogram equalisation. Not a specification-based density pass.</figcaption></figure>
+<figure><img loading="lazy" src="images/06_dsm_overlay_lidar_ve1.png" alt="Candidate maximum-elevation DSM with a class-coloured point-cloud overlay."><figcaption><strong>DSM candidate and point overlay</strong>Maximum-elevation cells capture raised land features and water-related surfaces. Synthetic water surfaces are included.</figcaption></figure>
+</div>
+
+<h3>Land and seabed in a common reference</h3>
+<p>Combining classes 2 and 40 demonstrates a ground–seabed elevation product within one source survey and one vertical reference. It does <b>not</b> complete fusion with independently acquired multibeam data, resolve a Chart Datum conversion, or establish continuous coverage across the harbour.</p>
+
+<figure class="wide"><img loading="lazy" src="images/17_land_seabed_dtm.png" alt="ArcGIS view of the ground–seabed elevation prototype.">
+<figcaption><strong>Ground–seabed elevation prototype in NZVD2016</strong>The display illustrates the transition between sampled land and seabed elevations. The 0 m NZVD2016 contour is a zero-elevation line, not a surveyed shoreline.</figcaption></figure>
+
+<figure class="wide"><img loading="lazy" src="images/16_profile_graph.png" alt="Single ArcGIS elevation-versus-distance profile.">
+<figcaption><strong>Single raster elevation profile</strong>One profile at the illustrated location spans ~450 m. It is an elevation-vs-distance trace, not two class-coloured point transects, a PCA-derived channel section, or an independent depth validation. No Chart Datum line is asserted (§6).</figcaption></figure>
+</section>
+
+<section class="card" id="datums">
+<h2>6 · Vertical datums and tidal interpretation</h2>
+<p>The source elevations are referenced to <b>NZVD2016</b>, a gravity-based national height reference defined independently of local sea level. Tauranga tide predictions state heights above <b>local Chart Datum</b>. A zero-height NZVD2016 contour is an elevation contour; it cannot be assumed to identify a shoreline or a tidal boundary.</p>
+<p>Delivered class-42 synthetic water-surface records cluster near the water surface in NZVD2016. Their point-weighted elevation describes sampled water surfaces at acquisition times; it is <b>not</b> Mean Sea Level. Point density, flight geometry, timing and water conditions affect the distribution — millions of nearby returns are not millions of independent long-term sea-level observations. The midpoint of published mean high and low water is likewise not MSL.</p>
+
+<div class="note warn"><b>No tidal threshold is derived</b><p>No NZVD2016–Chart Datum offset, MHWS elevation, surveyed drying line or verified intertidal area is calculated in this report. A high–low tide midpoint and an airborne water-surface median do not establish that connection. Earlier drafts estimated CD ≈ −1.28 m and MHWS ≈ +0.6 m NZVD2016; those are removed.</p></div>
+
+<p>LINZ defines Tauranga Chart Datum as <b>4.103 m below benchmark BC 84 (B309)</b>. A local connection can be investigated using:</p>
+<p><code>Chart Datum elevation in NZVD2016 = applicable B309 NZVD2016 height − 4.103 m</code></p>
+<p>The applicable benchmark height, connection record, uncertainty and spatial use must be verified before using this relationship. That work has not been completed here. A local port connection should not be extended across the harbour without checking its applicability. LINZ's Joining Land and Sea (JLAS) framework uses surveyed tide-gauge and benchmark connections, mean sea-surface information and tidal surfaces to support datum integration — it provides the methodological context for future work; no unverified local transformation is substituted for that evidence.</p>
+
+<h3>Problem log: how unfamiliar problems were handled</h3>
+<div class="table-scroll"><table><caption>Problem → diagnosis → resolution</caption>
+<thead><tr><th>Problem hit</th><th>Diagnosis</th><th>Resolution</th></tr></thead>
+<tbody>
+<tr><td>".las" files failed laspy read</td><td>Extension was .las but payload was LAZ-compressed</td><td>Pass explicit Laszip backend; verified LAS 1.4 PDRF8 + embedded WKT before processing.</td></tr>
+<tr><td>GPS times initially decoded to 1993</td><td>Header flags Adjusted Standard GPS Time; correct epoch handling yields 2025-01-28 to 2025-02-18 UTC</td><td>Decoded range documented in §1; no "vendor epoch anomaly" claim.</td></tr>
+<tr><td>Apparent intensity p95 = 65,530 looked like sensor saturation</td><td>All 13.0 M class-42 synthetic water points store intensity 65,530; the assignment mechanism was not established</td><td>A second point-level intensity summary was calculated with class 42 excluded; the existing ArcGIS intensity raster was retained and clearly labelled as still including class 42, pending a documented re-run.</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="card" id="provenance">
+<h2>7 · Provenance, reproducibility and next steps</h2>
+<p>The evidence snapshot records source-file SHA-256 hashes, header metadata, per-tile counts, class/flag summaries, explicit intensity populations, decoded times and audited ArcGIS raster properties. These support the reported observations without including the large point-cloud files in Git.</p>
+
+<div class="table-scroll"><table><caption>Reproducibility status</caption>
+<thead><tr><th>Component</th><th>Status</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td>Chunked LAS / existing-raster audit (Python)</td><td><span class="status">Included and run</span></td><td>Reads converted PDRF8 LAS and existing ArcGIS products; creates the evidence snapshot without changing inputs.</td></tr>
+<tr><td>ArcGIS Pro product generation</td><td><span class="status">Partially documented</span></td><td>Tools, parameters and screenshots record the products; saved input-layer filters and a tested re-run workflow are still needed.</td></tr>
+<tr><td>Point-cloud-to-raster re-run from scratch</td><td><span class="status pending">Not demonstrated</span></td><td>Filters (exclude withheld, class 42 from intensity/DSM) need to be saved and a fresh run verified.</td></tr>
+<tr><td>National-scale processing / public catalogue</td><td><span class="status pending">Not demonstrated</span></td><td>No claim that this local workflow has been tested on the whole national layer or accepted for LINZ publication. Scaling to the national layer would require a more scalable processing strategy, potentially including COPC streaming, tiled/out-of-core gridding or parallel processing.</td></tr>
+<tr><td>Formal acceptance / independent accuracy</td><td><span class="status pending">Out of scope</span></td><td>Needs ground control, reference soundings, and LINZ QA procedure — not part of this demo.</td></tr>
+</tbody></table></div>
+
+<h3>Next-step candidates for the Sea Squad</h3>
+<ol>
+<li><b>Complete processing provenance.</b> Save each input layer's class/flag filters, align output grids and masks, and test a fresh point-cloud-to-raster run (including the class-42 exclusion from intensity and DSM).</li>
+<li><b>Evaluate product consistency.</b> Compare against compatible versions of LINZ's published <a href="https://data.linz.govt.nz/layer/122508/">Coastal LiDAR 1 m DEM</a> and <a href="https://data.linz.govt.nz/layer/123048/">DSM</a>; if both use the same survey, the comparison assesses processing consistency rather than independent measurement accuracy.</li>
+<li><b>Perform independent QA.</b> Use suitable reference observations to assess positional and classification accuracy, and documented spatial density/coverage methods rather than tile-average all-record counts.</li>
+<li><b>Establish a local datum connection.</b> Verify the B309 benchmark and tide-gauge evidence before combining Chart-Datum bathymetry or identifying tidal boundaries.</li>
+<li><b>Prepare discoverable publication.</b> Add complete product metadata, licences, stable access links and catalogue records to a reviewed delivery package.</li>
+</ol>
+<p class="small">The source point-cloud layer is imported independently of the published coastal DEM and DSM layers and may have a different update history. Product comparisons therefore require matching survey versions and dates, grid alignment and filters.</p>
+</section>
+
+<section class="card" id="sources">
+<h2>Sources and attribution</h2>
+<ol class="sources">
+<li><a href="https://data.linz.govt.nz/layer/d3Y5Qkvcp5Q5vXf/new-zealand-coastal-lidar-point-cloud/">LINZ New Zealand Coastal LiDAR Point Cloud</a>; project classification definitions and requirements from the metadata supplied with the 7 October 2026 export.</li>
+<li><a href="https://www.linz.govt.nz/products-services/data/3d-coastal-mapping/questions-and-answers">LINZ 3DCM Questions and answers</a> — including the scope of QA (reference-data accuracy, DEM/DSM artefacts, metadata encoding).</li>
+<li><a href="https://www.linz.govt.nz/products-services/data/3d-coastal-mapping/programme">LINZ 3D Coastal Mapping programme / Joining Land and Sea</a> — tide-gauge connections and tidal-surface integration.</li>
+<li><a href="https://www.linz.govt.nz/guidance/coordinate-systems-used-new-zealand/vertical-datums/sea-level-heights">LINZ Sea-level heights</a> and <a href="https://www.linz.govt.nz/guidance/marine-information/tide-prediction-guidance/tides-glossary">tidal definitions</a>.</li>
+<li><a href="https://www.linz.govt.nz/guidance/marine-information/tide-prediction-guidance/standard-port-datum-descriptions">LINZ standard-port Chart Datum definitions</a> and <a href="https://www.linz.govt.nz/guidance/coordinate-systems-used-new-zealand/vertical-datums/sea-level-heights/tidal-level-information-surveyors">tidal-level guidance for surveyors</a>.</li>
+<li><a href="https://asprslas.org/stable/02.00_definition.html">ASPRS LAS definition</a> and LAS 1.4 R15 specification; <a href="https://copc.io/">COPC specification</a>.</li>
+<li>Esri: <a href="https://doc.esri.com/en/arcgis-pro/latest/tool-reference/conversion/las-dataset-to-raster.html">LAS Dataset To Raster</a> and <a href="https://doc.esri.com/en/arcgis-pro/latest/tool-reference/data-management/las-point-statistics-as-raster.html">LAS Point Statistics As Raster</a>.</li>
+<li>Published reference products: <a href="https://data.linz.govt.nz/layer/122508/">Coastal LiDAR 1 m DEM</a> · <a href="https://data.linz.govt.nz/layer/123048/">Coastal LiDAR 1 m DSM</a> · <a href="https://data.linz.govt.nz/layer/122509/">Survey index</a>.</li>
+</ol>
+<p><b>Source-data attribution:</b> Sourced from the <a href="https://data.linz.govt.nz/layer/d3Y5Qkvcp5Q5vXf/">LINZ Data Service</a> and licensed by Toitū Te Whenua Land Information New Zealand, for re-use under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p>
+<p class="small">Figures are ArcGIS Pro scene and raster screenshots, except the tile-layout schematic assembled from audited bounds. Contextual basemap material appears in screenshots; the LINZ attribution above identifies the source point cloud. No authoritative navigation, surveyed boundary or formal acceptance status is asserted.</p>
+</section>
+
+<footer>Tauranga coastal LiDAR portfolio demo · 8 October 2026 · Evidence-based scope and product descriptions · Wenjuan Wang (Nicole).</footer>
+</main>
+</body>
+</html>
+
