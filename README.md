@@ -112,7 +112,7 @@ Five ArcGIS rasters, 1 m cells, 2,880 × 1,440, bounds E 1,877,920–1,880,800 /
 | DSM candidate | Elevation · Binning Maximum | Includes water-related and synthetic class-42 surfaces |
 | Point-count raster | Point Count · 1 m | Non-withheld counts, includes synthetic class 42 |
 | Mean intensity raster | Intensity · Binning Average | Includes synthetic class 42 (mixed population) |
-| Gridded point RGB | RGB · Binning Average | Three-band source attributes aggregated to cells |
+| RGB colour grid | RGB · Binning Average | Three-band point colour attributes averaged to 1 m cells |
 
 ### Gallery
 
