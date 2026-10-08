@@ -181,4 +181,4 @@ Point-cloud data (.laz/.las) and GeoTIFFs are excluded from Git.
 
 Sourced from the [LINZ Data Service](https://data.linz.govt.nz/layer/d3Y5Qkvcp5Q5vXf/new-zealand-coastal-lidar-point-cloud/) and licensed by Toitū Te Whenua Land Information New Zealand under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
-Wenjuan Wang (Nicole) · Christchurch, NZ · 2026
+Wenjuan Wang · Christchurch, NZ · 2026
