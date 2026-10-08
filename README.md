@@ -36,7 +36,7 @@ A hands-on exercise on real LINZ coastal LiDAR data: I downloaded 4 LAZ tiles (4
 | Vertical CRS | New Zealand Vertical Datum 2016 (NZVD2016) · EPSG:7839 |
 | File sizes | ~390 MB compressed LAZ across 4 tiles; ~1.55 GB as converted LAS |
 | Decoded point-record times | 2025-01-28 to 2025-02-18 UTC (Adjusted Standard GPS Time) |
-| Scan angle | Raw int16 ±3249 × PDRF8 scale 0.006° → **±19.494°** |
+| Scan angle | Raw PDRF8 values −3249 to +3249; at 0.006° per unit, this corresponds to −19.494° to +19.494° |
 | Licence | CC BY 4.0 |
 
 ### Tile layout
