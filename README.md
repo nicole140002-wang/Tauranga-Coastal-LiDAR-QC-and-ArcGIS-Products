@@ -6,14 +6,14 @@ Independent portfolio demonstration using LINZ 3D Coastal Mapping data, focused 
 
 <table>
 <tr>
-<td align="center"><b>Ground–seabed DTM</b><br><img src="images/17_land_seabed_dtm_leg.png" width="320"></td>
-<td align="center"><b>RGB true colour</b><br><img src="images/12_rgb_1m_truecolor_leg.png" width="320"></td>
-<td align="center"><b>Mean intensity</b><br><img src="images/13_intensity_1m_leg.png" width="320"></td>
+<td align="center"><b>Ground–seabed DTM</b><br><img src="images/17_land_seabed_dtm_thumb.png" width="320"><br><small>−17.45 m (brown) → +11.26 m (yellow), NZVD2016</small></td>
+<td align="center"><b>RGB true colour</b><br><img src="images/12_rgb_1m_truecolor_thumb.png" width="320"><br><small>True colour composite</small></td>
+<td align="center"><b>Mean intensity</b><br><img src="images/13_intensity_1m_thumb.png" width="320"><br><small>642 (dark) → 65,530 (yellow); synthetic water = 65,530</small></td>
 </tr>
 <tr>
-<td align="center"><b>Point density</b><br><img src="images/14_density_1m_leg.png" width="320"></td>
-<td align="center"><b>Elevation profile</b><br><img src="images/16_profile_graph_leg.png" width="320"></td>
-<td align="center"><b>3D classification</b><br><img src="images/01_port_wharf_classification_3d_leg.png" width="320"></td>
+<td align="center"><b>Point density</b><br><img src="images/14_density_1m_thumb.png" width="320"><br><small>1 (purple) → 315 (yellow) points/cell</small></td>
+<td align="center"><b>Elevation profile</b><br><img src="images/16_profile_graph_thumb.png" width="320"><br><small>Sulphur Point across channel</small></td>
+<td align="center"><b>3D classification</b><br><img src="images/01_port_wharf_classification_3d_thumb.png" width="320"><br><small>Ground (brown), veg (green), building (red), seabed (blue)</small></td>
 </tr>
 </table>
 
