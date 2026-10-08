@@ -2,8 +2,6 @@
 
 Independent portfolio demonstration using LINZ 3D Coastal Mapping data, focused on coastal LiDAR QC, ArcGIS Pro raster products, and vertical-datum interpretation.
 
-**Live report:** [View the interactive portfolio report](https://nicole140002-wang.github.io/tauranga-coastal-lidar/)
-
 ## Showcase
 
 <table>
