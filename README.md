@@ -156,15 +156,9 @@ No NZVD2016–Chart Datum offset, MHWS elevation, surveyed drying line or verifi
 | GPS times decoded to 1993 | Header indicates Adjusted Standard GPS Time; restoring the 10⁹-second offset and converting GPS time to UTC yields 28 Jan – 18 Feb 2025 UTC | Documented in §1; no "vendor epoch anomaly" claim |
 | Intensity p95 = 65,530 looked like saturation | All 13.0 M class-42 points store 65,530; assignment mechanism not established | Second summary calculated excluding class 42; existing raster retained and labelled |
 
-## Provenance
+## Provenance and reproducibility
 
-| Component | Status |
-|---|---|
-| Chunked LAS / raster audit (Python) | Included and run |
-| ArcGIS Pro product generation | Partially documented (tools, params, screenshots; saved filters needed) |
-| Point-cloud-to-raster re-run from scratch | Not demonstrated |
-| National-scale / public catalogue | Not demonstrated; scaling would require a more scalable processing strategy, potentially including COPC streaming, tiled/out-of-core gridding or parallel processing |
-| Formal acceptance / independent accuracy | Out of scope |
+The Python QC workflow records source-file metadata, class and flag summaries, intensity statistics, decoded GPS times and raster properties without modifying the source data. ArcGIS Pro tools, parameters and outputs are documented in the report; a fully reproducible re-run would additionally require saved layer filters and processing environments. Formal supplier acceptance, independent positional-accuracy testing and national-scale production processing are outside the scope of this portfolio demonstration.
 
 ## Structure
 
