@@ -19,7 +19,7 @@ A hands-on exercise on real LINZ coastal LiDAR data: I downloaded 4 LAZ tiles (4
 
 **What I did:**
 - Audited classifications, withheld flags, synthetic water points, elevation ranges and intensity
-- Built ground–seabed DTM, DSM, RGB, intensity and density rasters from the LAS dataset
+- Built ground–seabed DTM, DSM, RGB, intensity, density and hillshade rasters from the LAS dataset
 - Ran an elevation profile across the shipping channel
 
 **What I did *not* claim:** formal vendor acceptance, independent accuracy, Chart Datum transformation, or a verified intertidal boundary — those require reference data and are listed as follow-up work.
