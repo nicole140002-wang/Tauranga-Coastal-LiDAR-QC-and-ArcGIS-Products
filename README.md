@@ -4,38 +4,10 @@ Independent portfolio demonstration using LINZ 3D Coastal Mapping data, focused 
 
 ## Showcase
 
-<div style="display:flex;flex-wrap:wrap;gap:10px;">
-<div style="width:32%;text-align:center;">
-<b>Ground–seabed DTM</b><br>
-<img src="images/17_land_seabed_dtm_thumb.png" style="width:100%;"><br>
-<sub>Brown = deep seabed, yellow = high ground · −17.45 m → +11.26 m</sub>
-</div>
-<div style="width:32%;text-align:center;">
-<b>RGB true colour</b><br>
-<img src="images/12_rgb_1m_truecolor_thumb.png" style="width:100%;"><br>
-<sub>Three-band point attributes aggregated to 1 m cells</sub>
-</div>
-<div style="width:32%;text-align:center;">
-<b>Mean intensity</b><br>
-<img src="images/13_intensity_1m_thumb.png" style="width:100%;"><br>
-<sub>Dark purple = low, bright yellow = high · 642 → 65,530</sub>
-</div>
-<div style="width:32%;text-align:center;">
-<b>Point density</b><br>
-<img src="images/14_density_1m_thumb.png" style="width:100%;"><br>
-<sub>Purple = sparse, yellow = dense · 1 → 315 points/cell</sub>
-</div>
-<div style="width:32%;text-align:center;">
-<b>Elevation profile</b><br>
-<img src="images/16_profile_graph_thumb.png" style="width:100%;"><br>
-<sub>Cross-section from Sulphur Point across the channel</sub>
-</div>
-<div style="width:32%;text-align:center;">
-<b>3D classification</b><br>
-<img src="images/01_port_wharf_classification_3d_thumb.png" style="width:100%;"><br>
-<sub>Brown = ground, green = vegetation, red = building, blue = seabed</sub>
-</div>
-</div>
+| | | |
+|:---:|:---:|:---:|
+| <img src="images/17_land_seabed_dtm_thumb.png" width="280"><br>**Ground–seabed DTM**<br><sub>Brown = deep, yellow = high · −17.45 → +11.26 m</sub> | <img src="images/12_rgb_1m_truecolor_thumb.png" width="280"><br>**RGB true colour**<br><sub>Three-band attributes at 1 m</sub> | <img src="images/13_intensity_1m_thumb.png" width="280"><br>**Mean intensity**<br><sub>Dark = low, yellow = high · 642 → 65,530</sub> |
+| <img src="images/14_density_1m_thumb.png" width="280"><br>**Point density**<br><sub>Purple = sparse, yellow = dense · 1 → 315</sub> | <img src="images/16_profile_graph_thumb.png" width="280"><br>**Elevation profile**<br><sub>Sulphur Point across channel</sub> | <img src="images/01_port_wharf_classification_3d_thumb.png" width="280"><br>**3D classification**<br><sub>Ground, veg, building, seabed</sub> |
 
 ---
 
