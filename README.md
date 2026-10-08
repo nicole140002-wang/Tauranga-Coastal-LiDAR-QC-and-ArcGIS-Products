@@ -6,8 +6,8 @@ Independent portfolio demonstration using LINZ 3D Coastal Mapping data, focused 
 
 | | | |
 |:---:|:---:|:---:|
-| <img src="images/17_land_seabed_dtm_thumb.png" width="280"><br>**Ground–seabed DTM**<br><sub>Brown = deep, yellow = high · −17.45 → +11.26 m</sub> | <img src="images/12_rgb_1m_truecolor_thumb.png" width="280"><br>**RGB true colour**<br><sub>Three-band attributes at 1 m</sub> | <img src="images/13_intensity_1m_thumb.png" width="280"><br>**Mean intensity**<br><sub>Dark = low, yellow = high · 642 → 65,530</sub> |
-| <img src="images/14_density_1m_thumb.png" width="280"><br>**Point density**<br><sub>Purple = sparse, yellow = dense · 1 → 315</sub> | <img src="images/16_profile_graph_thumb.png" width="280"><br>**Elevation profile**<br><sub>Sulphur Point across channel</sub> | <img src="images/01_port_wharf_classification_3d_thumb.png" width="280"><br>**3D classification**<br><sub>Ground, veg, building, seabed</sub> |
+| **Ground–seabed DTM**<br><img src="images/17_land_seabed_dtm_thumb.png" width="280"><br><sub>Brown = deep, yellow = high · −17.45 → +11.26 m</sub> | **RGB true colour**<br><img src="images/12_rgb_1m_truecolor_thumb.png" width="280"><br><sub>Three-band attributes at 1 m</sub> | **Mean intensity**<br><img src="images/13_intensity_1m_thumb.png" width="280"><br><sub>Dark = low, yellow = high · 642 → 65,530</sub> |
+| **Point density**<br><img src="images/14_density_1m_thumb.png" width="280"><br><sub>Purple = sparse, yellow = dense · 1 → 315</sub> | **Elevation profile**<br><img src="images/16_profile_graph_thumb.png" width="280"><br><sub>Sulphur Point across channel</sub> | **3D classification**<br><img src="images/01_port_wharf_classification_3d_thumb.png" width="280"><br><sub>Ground, veg, building, seabed</sub> |
 
 ---
 
