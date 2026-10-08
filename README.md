@@ -2,7 +2,15 @@
 
 Independent portfolio demonstration on LINZ 3D Coastal Mapping data (New Zealand Coastal LiDAR Point Cloud), prepared for the Toitū Te Whenua Sea Squad Geospatial Specialist Level 1 role.
 
-**Live report:** https://nicole140002-wang.github.io/coastal-lidar-qc/
+**Live report:** https://nicole140002-wang.github.io/tauranga-coastal-lidar/
+
+## Showcase
+
+| Ground–seabed DTM | RGB true colour | Mean intensity |
+|:---:|:---:|:---:|
+| ![DTM](images/17_land_seabed_dtm.png) | ![RGB](images/12_rgb_1m_truecolor.png) | ![Intensity](images/13_intensity_1m.png) |
+| Point density | Elevation profile | 3D classification |
+| ![Density](images/14_density_1m.png) | ![Profile](images/16_profile_graph.png) | ![3D](images/01_port_wharf_classification_3d.png) |
 
 ---
 
