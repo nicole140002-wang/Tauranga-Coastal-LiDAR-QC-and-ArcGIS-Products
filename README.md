@@ -116,15 +116,27 @@ Five ArcGIS rasters, 1 m cells, 2,880 × 1,440, bounds E 1,877,920–1,880,800 /
 
 ### Gallery
 
+**RGB colour grid (1 m)**
+
 <img src="images/12_rgb_gallery.png" width="800">
+
+**Mean intensity (1 m, synthetic water included)**
 
 <img src="images/13_intensity_gallery.png" width="800">
 
+**Point density (points per 1 m cell)**
+
 <img src="images/14_density_gallery.png" width="800">
+
+**Digital Surface Model (highest return, 1 m)**
 
 <img src="images/06_dsm_gallery.png" width="800">
 
+**Ground–seabed DTM (classes 2 + 40, 1 m)**
+
 <img src="images/17_dtm_gallery.png" width="800">
+
+**Elevation profile across the shipping channel**
 
 <img src="images/16_profile_gallery.png" width="800">
 
