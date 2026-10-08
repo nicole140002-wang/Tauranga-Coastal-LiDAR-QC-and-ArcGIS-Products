@@ -128,7 +128,7 @@ Five ArcGIS rasters, 1 m cells, 2,880 × 1,440, bounds E 1,877,920–1,880,800 /
 
 <img src="images/14_density_gallery.png" width="800">
 
-**Digital Surface Model (highest return, 1 m)**
+**Digital Surface Model (maximum elevation per cell, all returns, 1 m)**
 
 <img src="images/06_dsm_gallery.png" width="800">
 
