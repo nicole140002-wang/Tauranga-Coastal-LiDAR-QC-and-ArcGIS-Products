@@ -124,17 +124,17 @@ Five ArcGIS rasters, 1 m cells, 2,880 × 1,440, bounds E 1,877,920–1,880,800 /
 
 ### Gallery
 
-![RGB true colour](images/12_rgb_gallery.png)
+<img src="images/12_rgb_gallery.png" width="800">
 
-![Mean intensity (synthetic included)](images/13_intensity_gallery.png)
+<img src="images/13_intensity_gallery.png" width="800">
 
-![Point density](images/14_density_gallery.png)
+<img src="images/14_density_gallery.png" width="800">
 
-![DSM + point overlay](images/06_dsm_gallery.png)
+<img src="images/06_dsm_gallery.png" width="800">
 
-![Ground-seabed DTM](images/17_dtm_gallery.png)
+<img src="images/17_dtm_gallery.png" width="800">
 
-![Elevation profile](images/16_profile_gallery.png)
+<img src="images/16_profile_gallery.png" width="800">
 
 Combining classes 2 and 40 demonstrates a ground–seabed elevation product within one source survey and one vertical reference. It does **not** complete fusion with independently acquired multibeam data, resolve a Chart Datum conversion, or establish continuous harbour coverage.
 
