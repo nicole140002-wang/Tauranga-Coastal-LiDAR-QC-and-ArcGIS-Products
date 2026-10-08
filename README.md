@@ -35,7 +35,7 @@ A hands-on exercise on real LINZ coastal LiDAR data: I downloaded 4 LAZ tiles (4
 | Horizontal CRS | NZGD2000 / New Zealand Transverse Mercator 2000 (NZTM2000) · EPSG:2193 |
 | Vertical CRS | New Zealand Vertical Datum 2016 (NZVD2016) · EPSG:7839 |
 | File sizes | ~390 MB compressed LAZ across 4 tiles; ~1.55 GB as converted LAS |
-| Decoded point-record times | 2025-01-28 to 2025-02-18 UTC (Adjusted Standard GPS Time) |
+| Decoded point-record times | 28 Jan – 18 Feb 2025 UTC (Adjusted Standard GPS Time; stored value + 10⁹ s, GPS–UTC leap-second offset applied) |
 | Scan angle | Raw PDRF8 values −3249 to +3249; at 0.006° per unit, this corresponds to −19.494° to +19.494° |
 | Licence | CC BY 4.0 |
 
@@ -141,7 +141,7 @@ No NZVD2016–Chart Datum offset, MHWS elevation, surveyed drying line or verifi
 | Problem | Diagnosis | Resolution |
 |---|---|---|
 | ".las" files failed laspy read | Extension was .las but payload was LAZ-compressed | Pass explicit Laszip backend; verified LAS 1.4 PDRF8 + WKT |
-| GPS times decoded to 1993 | Header flags Adjusted Standard GPS Time; correct epoch yields 2025-01-28 to 2025-02-18 UTC | Documented in §1; no "vendor epoch anomaly" claim |
+| GPS times decoded to 1993 | Initial decode treated Adjusted Standard GPS Time as full GPS seconds; restoring the 10⁹-second offset and applying GPS–UTC conversion yields 28 Jan – 18 Feb 2025 UTC | Documented in §1; no "vendor epoch anomaly" claim |
 | Intensity p95 = 65,530 looked like saturation | All 13.0 M class-42 points store 65,530; assignment mechanism not established | Second summary calculated excluding class 42; existing raster retained and labelled |
 
 ## Provenance
