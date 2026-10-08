@@ -1,8 +1,10 @@
 # Tauranga Coastal LiDAR — QC & 1 m ArcGIS Products
 
-Independent portfolio demonstration on LINZ 3D Coastal Mapping data (New Zealand Coastal LiDAR Point Cloud), prepared for the Toitū Te Whenua Sea Squad Geospatial Specialist role.
+Independent portfolio demonstration on LINZ 3D Coastal Mapping data (New Zealand Coastal LiDAR Point Cloud), prepared for the Toitū Te Whenua Sea Squad Geospatial Specialist Level 1 role.
 
-**Report:** [`images/linz_3dcm_demo_report.html`](images/linz_3dcm_demo_report.html) — open in a browser.
+**Live report:** https://nicole140002-wang.github.io/coastal-lidar-qc/
+
+---
 
 ## What this is
 
@@ -11,15 +13,150 @@ Independent portfolio demonstration on LINZ 3D Coastal Mapping data (New Zealand
 - 1 m ArcGIS Pro products: DTM (ground + seabed), DSM, RGB, mean intensity, point density, hillshade, elevation profile.
 - Explicit limits: no formal acceptance, no verified Chart Datum connection, no intertidal boundary.
 
+The work examines how topographic, bathymetric and processing-generated records behave in a selected sample, and documents what the resulting products can support — and what they cannot.
+
+## Scope and source data
+
+| Item | Detail |
+|---|---|
+| Source layer | LINZ Data Service · `d3Y5Qkvcp5Q5vXf` · export metadata dated 7 October 2026 |
+| File structure | LAS 1.4, point data record format 8; original payloads LAZ-compressed with COPC; converted files uncompressed LAS |
+| Horizontal reference | NZGD2000 / NZTM2000 · EPSG:2193 |
+| Vertical reference | NZVD2016 height (EPSG:7839), confirmed in source WKT |
+| File sizes | ~390 MB compressed LAZ across 4 tiles; ~1.55 GB as converted LAS |
+| Decoded point-record times | 2025-01-28 to 2025-02-18 UTC (Adjusted Standard GPS Time) |
+| Scan angle | Raw int16 ±3249 × PDRF8 scale 0.006° → **±19.494°** |
+| Licence | CC BY 4.0 |
+
+### Tile layout
+
+4 non-contiguous tiles, 480 m × 720 m each, separated by ~480 m gaps. Tile-frame total ≈ 1.38 km²; enclosing rectangle ≈ 4.15 km² — neither is an effective measured footprint.
+
+## First-line checks
+
+### Per-tile record summaries
+
+| Tile | Records | Mean records/m² | Ground (class 2) | Seabed (class 40) | Synthetic water (class 42) | Min class-40 Z (m) |
+|---|---:|---:|---:|---:|---:|---:|
+| 1206 | 10,304,404 | 29.8 | 1,411,241 | 1,004,015 | 1,615,638 | −5.40 |
+| 1208 | 9,465,971 | 27.4 | 65,976 | 555,503 | 4,126,195 | −15.33 |
+| 1305 | 12,476,448 | 36.1 | 1,140,609 | 583,583 | 3,794,917 | −10.48 |
+| 1310 | 8,503,988 | 24.6 | 662,235 | 381,955 | 3,463,997 | −17.45 |
+
+Mean density divides all delivered records by each tile's bounding rectangle. The numerator includes synthetic, withheld, vendor-labelled noise and multiple returns. It does **not** measure compliance with a minimum survey-density requirement.
+
+### Flag summary
+
+| Flag | Count | Share |
+|---|---:|---:|
+| Withheld records | 16.98 M | 41.7% |
+| Synthetic records (class 42) | 13.00 M | 31.9% |
+
+Classes present: 1 unclassified, 2 ground, 3 low vegetation, 4 medium vegetation, 5 high vegetation, 6 building, 7 low noise, 40 seabed, 42 synthetic water surface, 45 (bathymetric noise as labelled in this delivery).
+
+### Extreme elevations are not a depth validation
+
+The all-record elevation range is approximately −117.6 to +86.8 m NZVD2016. The most negative record (tile 1305, −117.56 m) and the maximum (+86.79 m) are both labelled class 7 low noise. The minimum among delivered class-40 seabed records is −17.45 m NZVD2016 — a class-specific sample statistic, not a verified harbour depth.
+
+![Classification review](images/01_port_wharf_classification_3d.png)
+
+## QC finding: uniform intensity on synthetic water surfaces
+
+All **13.0 M class-42 records have intensity = 65,530**. The export metadata defines class 42 as a synthetic water surface used in refraction processing. This establishes a uniform stored attribute; why that value was assigned has not been established.
+
+| Population | Records | Mean | Median | P95 |
+|---|---:|---:|---:|---:|
+| All records (as delivered) | 40,750,811 | 34,545 | — | 65,530 |
+| Excluding class 42 only | 27,750,064 | 20,028 | 16,009 | 61,479 |
+
+"Excluding class 42 only" still includes withheld and noise-labelled records, so p95 = 61,479 is not a "clean" real-return intensity. Intensity is a system-specific return-magnitude attribute, not calibrated reflectance. The unsigned 16-bit field limit is 65,535; the observed 65,530 alone is not a saturation test.
+
+The existing ArcGIS intensity raster still includes synthetic class 42 — roughly 43.8% of valid cells read 65,530. A screened-return raster would require a separate, documented regeneration.
+
+## ArcGIS Pro workflow
+
+The product set was generated in ArcGIS Pro from the four converted LAS tiles. Supporting Python QC (laspy/numpy) audited classifications, flags, intensity statistics and raster properties.
+
+| Step | Tool | Parameters | Output |
+|---|---|---|---|
+| 1. Build LAS dataset | LAS Dataset → Add files | 4 converted LAS tiles; NZTM2000 + NZVD2016 | `coastal.lasd` |
+| 2. Classification symbology | Symbology → Classify | Class 2 ground, 6 building, 40 seabed, 42 synthetic water | 3D scene |
+| 3. DTM | LAS Dataset To Raster | Elevation · Binning Average · 1 m · Void Fill None · ground+seabed | `DTM_1m_nofill.tif` |
+| 4. DSM | LAS Dataset To Raster | Elevation · Binning Maximum · 1 m · All Points | `DSM_1m.tif` |
+| 5. RGB | LAS Dataset To Raster | Value = RGB · Binning Average · 1 m | `RGB_1m.tif` |
+| 6. Intensity | LAS Dataset To Raster | Value = Intensity · Binning Average · 1 m (display: histogram equalisation) | `intensity_1m.tif` |
+| 7. Density | LAS Point Statistics As Raster | Point Count · 1 m (display: histogram equalisation) | `density_1m.tif` |
+| 8. Hillshade | Hillshade | Azimuth 315° · Altitude 45° | `hillshade_1m.tif` |
+| 9. Land–seabed DTM colour | Symbology → Stretch | Purple→blue→green→yellow; 0 m NZVD2016 contour as elevation reference | DTM 3D + 2D |
+| 10. Profile | Analysis → Exploratory 3D Analysis → Elevation Profile | Line from Sulphur Point across channel | Elevation vs distance |
+| 11. Vertical exaggeration | Command Search (Alt+Q) | Vertical Exaggeration = 5.00 | 3D relief readable |
+
+## Products
+
+Five ArcGIS rasters, 1 m cells, 2,880 × 1,440, bounds E 1,877,920–1,880,800 / N 5,828,640–5,830,080.
+
+| Product | Method | Notes |
+|---|---|---|
+| Ground–seabed DTM | Elevation · Binning Average · Void Fill None | Classes 2 + 40; NoData cells remain gaps, not interpolated |
+| DSM candidate | Elevation · Binning Maximum | Includes water-related and synthetic class-42 surfaces |
+| Point-count raster | Point Count · 1 m | Non-withheld counts, includes synthetic class 42 |
+| Mean intensity raster | Intensity · Binning Average | Includes synthetic class 42 (mixed population) |
+| Gridded point RGB | RGB · Binning Average | Three-band source attributes aggregated to cells |
+
+### Gallery
+
+| RGB true colour | Mean intensity (synthetic included) |
+|---|---|
+| ![RGB](images/12_rgb_1m_truecolor.png) | ![Intensity](images/13_intensity_1m.png) |
+
+| Point density | DSM + point overlay |
+|---|---|
+| ![Density](images/14_density_1m.png) | ![DSM](images/06_dsm_overlay_lidar_ve1.png) |
+
+Ground–seabed elevation prototype in NZVD2016:
+
+![Land-seabed DTM](images/17_land_seabed_dtm.png)
+
+Elevation profile across the channel:
+
+![Profile](images/16_profile_graph.png)
+
+Combining classes 2 and 40 demonstrates a ground–seabed elevation product within one source survey and one vertical reference. It does **not** complete fusion with independently acquired multibeam data, resolve a Chart Datum conversion, or establish continuous harbour coverage.
+
+## Vertical datums and tidal interpretation
+
+The source elevations are referenced to **NZVD2016**, a gravity-based national height reference defined independently of local sea level. Tauranga tide predictions state heights above local **Chart Datum**. A zero-height NZVD2016 contour is an elevation contour; it cannot be assumed to identify a shoreline or tidal boundary.
+
+No NZVD2016–Chart Datum offset, MHWS elevation, surveyed drying line or verified intertidal area is calculated in this report. LINZ defines Tauranga Chart Datum as **4.103 m below benchmark BC 84 (B309)**; a local connection requires verifying the applicable B309 NZVD2016 height, connection record, uncertainty and spatial use.
+
+## Problem log
+
+| Problem | Diagnosis | Resolution |
+|---|---|---|
+| ".las" files failed laspy read | Extension was .las but payload was LAZ-compressed | Pass explicit Laszip backend; verified LAS 1.4 PDRF8 + WKT |
+| GPS times decoded to 1993 | Header flags Adjusted Standard GPS Time; correct epoch yields 2025-01-28 to 2025-02-18 UTC | Documented in §1; no "vendor epoch anomaly" claim |
+| Intensity p95 = 65,530 looked like saturation | All 13.0 M class-42 points store 65,530; assignment mechanism not established | Second summary calculated excluding class 42; existing raster retained and labelled |
+
+## Provenance
+
+| Component | Status |
+|---|---|
+| Chunked LAS / raster audit (Python) | Included and run |
+| ArcGIS Pro product generation | Partially documented (tools, params, screenshots; saved filters needed) |
+| Point-cloud-to-raster re-run from scratch | Not demonstrated |
+| National-scale / public catalogue | Not demonstrated; would require COPC streaming, tiled/out-of-core gridding or parallel processing |
+| Formal acceptance / independent accuracy | Out of scope |
+
 ## Structure
 
 ```
-images/      HTML report + ArcGIS screenshots (PNG)
+images/      Report HTML + ArcGIS screenshots (PNG)
 scripts/     Python QC scripts (laspy / numpy)
-arcgis/      ArcGIS project notes and screenshot README
+arcgis/      ArcGIS screenshots
+index.html   Live report (GitHub Pages)
 ```
 
-Point-cloud data (.laz/.las) and GeoTIFFs are excluded from Git; the report describes them without committing the large files.
+Point-cloud data (.laz/.las) and GeoTIFFs are excluded from Git.
 
 ## Data source
 
