@@ -126,19 +126,19 @@ Five ArcGIS rasters, 1 m cells, 2,880 × 1,440, bounds E 1,877,920–1,880,800 /
 
 | RGB true colour | Mean intensity (synthetic included) |
 |---|---|
-| ![RGB](images/12_rgb_1m_truecolor.png) | ![Intensity](images/13_intensity_1m.png) |
+| ![RGB](images/12_rgb_gallery.png) | ![Intensity](images/13_intensity_gallery.png) |
 
 | Point density | DSM + point overlay |
 |---|---|
-| ![Density](images/14_density_1m.png) | ![DSM](images/06_dsm_overlay_lidar_ve1.png) |
+| ![Density](images/14_density_gallery.png) | ![DSM](images/06_dsm_gallery.png) |
 
 Ground–seabed elevation prototype in NZVD2016:
 
-![Land-seabed DTM](images/17_land_seabed_dtm.png)
+![Land-seabed DTM](images/17_dtm_gallery.png)
 
 Elevation profile across the channel:
 
-![Profile](images/16_profile_graph.png)
+![Profile](images/16_profile_gallery.png)
 
 Combining classes 2 and 40 demonstrates a ground–seabed elevation product within one source survey and one vertical reference. It does **not** complete fusion with independently acquired multibeam data, resolve a Chart Datum conversion, or establish continuous harbour coverage.
 
