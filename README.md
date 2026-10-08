@@ -75,7 +75,7 @@ The all-record elevation range is approximately −117.6 to +86.8 m NZVD2016. Th
 
 All **13.0 M class-42 records have intensity = 65,530**. The export metadata defines class 42 as a synthetic water surface used in refraction processing. This establishes a uniform stored attribute; why that value was assigned has not been established.
 
-| Population | Records | Mean | Median | P95 |
+| Population | Records | Mean intensity | Median intensity | P95 intensity |
 |---|---:|---:|---:|---:|
 | All records (as delivered) | 40,750,811 | 34,545 | — | 65,530 |
 | Excluding class 42 only | 27,750,064 | 20,028 | 16,009 | 61,479 |
