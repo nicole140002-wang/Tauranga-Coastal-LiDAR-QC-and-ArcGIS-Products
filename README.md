@@ -17,7 +17,7 @@ Independent portfolio demonstration using LINZ 3D Coastal Mapping data, focused 
 </tr>
 </table>
 
-*Colour notes: DTM — purple (deepest) → blue → green → yellow (highest ground), NZVD2016 m. Intensity — 642 (dark) to 65,530 (bright yellow; synthetic water points read 65,530). Density — 1 (purple) to 315 (yellow) points per cell. DSM — −0.24 m (cyan) to +42.26 m (tan).*
+*Colour notes: DTM — −17.45 m (brown/deep) → green → yellow → +11.26 m (high ground), NZVD2016. Intensity — 642 (dark) to 65,530 (bright yellow; synthetic water points read 65,530). Density — 1 (purple) to 315 (yellow) points per cell. DSM — −0.24 m (cyan) to +42.26 m (tan). Classification — ground (brown), vegetation (green), building (red), seabed/40 (blue), synthetic water/42 (light blue).*
 
 ---
 
