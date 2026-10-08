@@ -30,7 +30,7 @@ A hands-on exercise on real LINZ coastal LiDAR data: I downloaded 4 LAZ tiles (4
 
 | Item | Detail |
 |---|---|
-| Source layer | LINZ Data Service · `d3Y5Qkvcp5Q5vXf` · export metadata dated 7 October 2026 |
+| Source layer | LINZ Data Service · `d3Y5Qkvcp5Q5vXf` (New Zealand Coastal LiDAR Point Cloud) |
 | File structure | LAS 1.4, point data record format 8; original payloads LAZ-compressed with COPC; converted files uncompressed LAS |
 | Horizontal reference | NZGD2000 / NZTM2000 · EPSG:2193 |
 | Vertical reference | NZVD2016 height (EPSG:7839), confirmed in source WKT |
